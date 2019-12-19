@@ -31,7 +31,7 @@ class LibraryController extends Controller{
 		
               $file_type = $_FILES['file']['type'];
               $file_val = file_get_contents($_FILES['file']['tmp_name']);
-              var_dump(base64_encode($file_val)); die();
+            
               //check token expiration to authenticate user
               if(Token::tokenValidity()){
                 if(!empty($register_vals)){
