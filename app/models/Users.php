@@ -35,7 +35,7 @@ class Users extends Model{
    * @param  string     $email email of user
    * @return object | false      returns user object or false if one is not found
    */    public function findByEmail($email){
-        return $this->findFirstEmail(['conditions'=>'email = ?', 'bind'=>[$email]]);
+        return $this->findFirstUser(['conditions'=>'email = ?', 'bind'=>[$email]]);
     }
 
 
