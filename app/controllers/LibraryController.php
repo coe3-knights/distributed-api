@@ -91,7 +91,7 @@ class LibraryController extends Controller{
 			        }else{
 			         //PDO initilized here to take care of limited memory size
 			         $db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASSWORD);
-			          $sth = $db->prepare("SELECT * FROM books");
+			          $sth = $db->prepare("SELECT id,title,author,description FROM books");
 					  $sth->execute();
 					  $results = $sth->fetchALL(PDO::FETCH_ASSOC);
                       
