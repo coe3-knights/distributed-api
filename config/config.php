@@ -1,10 +1,10 @@
 <?php
 
 define('DEBUG',true);
-define('DB_NAME','librarydb'); //database name
-define('DB_USER','root'); //database user
-define('DB_PASSWORD',''); //database password
-define('DB_HOST','127.0.0.1'); //database host ** use IP address to avoid DNS lookup
+define('DB_NAME','LbvGikVYpQ'); //database name
+define('DB_USER','LbvGikVYpQ'); //database user
+define('DB_PASSWORD','SgJWRqEyJM'); //database password
+define('DB_HOST','remotemysql.com'); //database host ** use IP address to avoid DNS lookup
 
 define('DEFAULT_CONTROLLER','Home'); //default controller if one isnt defined yet
 define('DEFAULT_LAYOUT','default'); //if no layout is set in the controller, use this layout;
