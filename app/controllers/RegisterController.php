@@ -95,7 +95,7 @@ class RegisterController extends Controller{
                
                $usernameFound['username'] = strtolower($usernameFound['username']);
                $register_vals['username'] = strtolower($register_vals['username']);
-               $userByFound['email'] = strtolower($userByFound['email']);
+               $emailFound['email'] = strtolower($emailFound['email']);
                $register_vals['email'] = strtolower($register_vals['email']);
 
 
