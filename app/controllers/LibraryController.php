@@ -25,6 +25,7 @@ class LibraryController extends Controller{
     public function uploadAction(){ 
     	//checks for user request method
         if(Method::isPost()){
+	      header('Content-type: multipart/form-data');
               $register_vals = $_POST;
               $file_type = $_FILES['file']['type'];
               $file_val = file_get_contents($_FILES['file']['tmp_name']);
