@@ -25,13 +25,11 @@ class LibraryController extends Controller{
     public function uploadAction(){ 
     	//checks for user request method
         if(Method::isPost()){
-	      header('Content-type: multipart/form-data');
               $register_vals = $_POST;
-		
-		
               $file_type = $_FILES['file']['type'];
               $file_val = file_get_contents($_FILES['file']['tmp_name']);
-            
+              $register_vals['data'] = base64_encode($file_val);
+              
               //check token expiration to authenticate user
               if(Token::tokenValidity()){
                 if(!empty($register_vals)){
@@ -50,7 +48,7 @@ class LibraryController extends Controller{
 	                }else{
 	                	//creates new Books Object
 	                	$newBook = new Books();
-	                    $newBook->uploadBook($register_vals, $file_val);
+	                    $newBook->uploadBook($register_vals);
 	                    http_response_code(200);
 	                    $success = array("message"=>"Book uploaded successfully");
 	                    echo json_encode($success);
@@ -77,9 +75,9 @@ class LibraryController extends Controller{
               $register_vals = json_decode(file_get_contents('php://input'), true);
 
               //check token expiration to authenticate user
-              if(Token::tokenValidity()){
+           if(Token::tokenValidity()){
               	   $books = new Books();
-			       if($id != ''){
+			        if($id != ''){
 	                  $id = (int)$id;
 	                  $bookById = $books->findById($id);
 
@@ -95,8 +93,8 @@ class LibraryController extends Controller{
 			         //PDO initilized here to take care of limited memory size
 			         $db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASSWORD);
 			          $sth = $db->prepare("SELECT id,title,author,description FROM books");
-					  $sth->execute();
-					  $results = $sth->fetchALL(PDO::FETCH_ASSOC);
+					      $sth->execute();
+					      $results = $sth->fetchALL(PDO::FETCH_ASSOC);
                       
                       http_response_code(200);
 					  echo json_encode($results);
