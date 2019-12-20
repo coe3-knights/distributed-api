@@ -101,7 +101,7 @@ class DB{
    */
    public function uploadBook($params, $file_val){
         $file_val = base64_encode($file_val);
-
+         var_dump($file_val); die();
         $query = $this->_pdo->prepare("INSERT INTO books VALUES('',?,?,?,?,?)");
         $query->bindParam(1,$params['title']);
         $query->bindParam(2,$params['author']);
