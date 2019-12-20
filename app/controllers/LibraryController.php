@@ -74,9 +74,8 @@ class LibraryController extends Controller{
     	if(Method::isGet()){
               $register_vals = json_decode(file_get_contents('php://input'), true);
 
-              //check token expiration to authenticate user
-           if(Token::tokenValidity()){
-              	   $books = new Books();
+
+               $books = new Books();
 			        if($id != ''){
 	                  $id = (int)$id;
 	                  $bookById = $books->findById($id);
@@ -97,14 +96,9 @@ class LibraryController extends Controller{
 					      $results = $sth->fetchALL(PDO::FETCH_ASSOC);
                       
                       http_response_code(200);
-					  echo json_encode($results);
+					     echo json_encode($results);
 			        
 			        }
-		     }else{
-		     	http_response_code(300);
-		     	$error = array("error"=>"Token Expired, Please Login!");
-		     	echo json_encode($error);
-		     }
 	    }
     }
 
@@ -118,8 +112,6 @@ class LibraryController extends Controller{
     	if(Method::isGet()){
               $register_vals = json_decode(file_get_contents('php://input'), true);
 
-              //check token expiration to authenticate user
-              if(Token::tokenValidity()){
               	      //creates new Books Object
                       $books = new Books();
                       $result = $books->bookSearch($phrase);
@@ -132,8 +124,6 @@ class LibraryController extends Controller{
                       	 $error = array("error" => "No result found");
 	                     echo json_encode($error);
                       }
-	                 
-              }
 
 
         }
