@@ -91,30 +91,6 @@ class DB{
     }
     
 
-
-      /**
-   * Upload Book
-   * @method uploadBook
-   * @param  array     $params array of book properties
-   * @param  file      $file_val uploaded file
-   * @return object | false      returns query object or false if one is not found
-   */
-   public function uploadBook($params, $file_val){
-        $file_val = base64_encode($file_val);
-        $query = $this->_pdo->prepare("INSERT INTO books VALUES('',?,?,?,?,?)");
-        $query->bindParam(1,$params['title']);
-        $query->bindParam(2,$params['author']);
-        $query->bindParam(3,$params['category']);
-        $query->bindParam(4,$params['description']);
-        $query->bindParam(5,$file_val);
-
-        $query->execute();
-        
-        return $query;
-
-    }
-
-
      
      /**
       query method
@@ -263,8 +239,8 @@ class DB{
    */
 
     public function ftSearch($table,$phrase){
-     
-     $sql = "SELECT * FROM {$table} WHERE title LIKE '%$phrase%' OR author LIKE '%$phrase%' OR description LIKE '%$phrase%'";
+      
+     $sql = "SELECT id,title,author,description FROM {$table} WHERE title LIKE '%$phrase%' OR author LIKE '%$phrase%' OR description LIKE '%$phrase%'";
      $this->_query = $this->_pdo->prepare($sql); 
 
           if($this->_query->execute()){
