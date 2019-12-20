@@ -240,7 +240,7 @@ class DB{
 
     public function ftSearch($table,$phrase){
       
-     $sql = "SELECT id,title,author,description FROM {$table} WHERE title LIKE '%$phrase%' OR author LIKE '%$phrase%' OR description LIKE '%$phrase%'";
+     $sql = "SELECT id,title,author,description FROM {$table} WHERE title LIKE '%$phrase%' OR author LIKE '%$phrase%' OR description LIKE '%$phrase%'  OR category LIKE '%$phrase%'";
      $this->_query = $this->_pdo->prepare($sql); 
 
           if($this->_query->execute()){
