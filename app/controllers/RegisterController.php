@@ -50,7 +50,7 @@ class RegisterController extends Controller{
                                      "token"=>$token);
                     echo json_encode($success);
                 }else{
-                    http_response_code(500);
+                    http_response_code(401);
                     $errors = array("message" => "Login Unsuccessful. Try again Later");
                     echo json_encode($errors);
                 }
