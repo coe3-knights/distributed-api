@@ -38,9 +38,9 @@ class Books extends Model{
    * @param  file      $file_val base64 encoded file
    * @return object | false      returns book object or false if one is not found
    */
-    public function uploadBook($params, $file_val){
-        return $this->uploadFile($params, $file_val);
-
+    public function uploadBook($params){
+        $this->assign($params);
+        $this->save();
     }
 
 
