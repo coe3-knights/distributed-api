@@ -32,12 +32,13 @@ class LibraryController extends Controller{
               $file_type = $_FILES['file']['type'];
               $file_val = file_get_contents($_FILES['file']['tmp_name']);
               $register_vals['data'] = base64_encode($file_val);
-		var_dump($register_vals['data']); die();
+		
               
               //check token expiration to authenticate user
               if(Token::tokenValidity()){
                 if(!empty($register_vals)){
 	                $errors = [];
+			var_dump($register_vals['data']); die();
 	                foreach($register_vals as $key=>$val ){
 	                    if(empty($register_vals["$key"])){
 	                        $errors[] = array("$key" => "Field cannot be empty");
