@@ -165,19 +165,7 @@ class Model{
         
        return $result;
    }
-     
-     /**
-   * Upload a file into the database table of a Model Object
-   * @method uploadFile
-   * @param  array     $params array of conditions and binds
-   * @param  file      $file_val base64 encoded file
-   * @return object | false      returns Model object or false if one is not found
-   */
-    public function uploadFile($params){
-      $resultsQuery = $this->_db->uploadBook($params);
-      return $resultsQuery;
-    }
-
+    
      
       /**
    * Matches a query parameter to table entity of a Model Object
