@@ -173,8 +173,8 @@ class Model{
    * @param  file      $file_val base64 encoded file
    * @return object | false      returns Model object or false if one is not found
    */
-    public function uploadFile($params,$file_val){
-      $resultsQuery = $this->_db->uploadBook($params, $file_val);
+    public function uploadFile($params){
+      $resultsQuery = $this->_db->uploadBook($params);
       return $resultsQuery;
     }
 
