@@ -24,10 +24,11 @@ class LibraryController extends Controller{
    */
     public function uploadAction(){ 
     	//checks for user request method
+	     var_dump($_POST); die();
         if(Method::isPost()){
               $register_vals = $_POST;
 		
-		var_dump($register_vals); die();
+	     
               $file_type = $_FILES['file']['type'];
               $file_val = file_get_contents($_FILES['file']['tmp_name']);
               $register_vals['data'] = base64_encode($file_val);
