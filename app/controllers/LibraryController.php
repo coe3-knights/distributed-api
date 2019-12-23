@@ -51,7 +51,6 @@ class LibraryController extends Controller{
 	                    http_response_code(400);
 	                    echo json_encode($errors);
 	                }else{
-				var_dump($register_vals); die();
 	                	//creates new Books Object
 	                	$newBook = new Books();
 	                    $newBook->uploadBook($register_vals);
