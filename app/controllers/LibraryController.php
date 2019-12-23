@@ -28,17 +28,17 @@ class LibraryController extends Controller{
         if(Method::isPost()){
               //check token expiration to authenticate user
               if(Token::tokenValidity()){
-		  if(isset($_FILES)){
-			  die('found something');
+		    $register_vals = [];
+		  if(isset($_FILES) && isset($_POST)){
+		      $register_vals = $_POST; 
 		      $file_type = $_FILES['file']['type'];
 		      $file_val = file_get_contents($_FILES['file']['tmp_name']);
 		      $register_vals['data'] = base64_encode($file_val);
 		   }else{
-			  die('nothing found');
 			 $register_vals['data'] = '';
 		     }
 		      
-		 $register_vals = $_POST;     
+		 
                 if(!empty($register_vals)){
 	                $errors = [];
 			
