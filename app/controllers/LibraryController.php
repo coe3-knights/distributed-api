@@ -29,10 +29,12 @@ class LibraryController extends Controller{
               //check token expiration to authenticate user
               if(Token::tokenValidity()){
 		  if(isset($_FILES)){
+			  die('found something');
 		      $file_type = $_FILES['file']['type'];
 		      $file_val = file_get_contents($_FILES['file']['tmp_name']);
 		      $register_vals['data'] = base64_encode($file_val);
 		   }else{
+			  die('nothing found');
 			 $register_vals['data'] = '';
 		     }
 		      
