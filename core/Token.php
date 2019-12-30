@@ -47,11 +47,10 @@ class Token{
    * @return boolean      returns true or false
    */
   public  static function tokenValidity() {
-			try {
-				$token = self::getBearerToken();
-				$payload = JWT::decode($token, SECRET_KEY, ['HS256']);
-
-                $db = DB::getInstance();
+	                     $token = self::getBearerToken();
+	                     $payload = JWT::decode($token, SECRET_KEY, ['HS256']);
+			   if($payload){
+                               $db = DB::getInstance();
 				$user = $db->findFirst('users',['conditions' => 'id = ?', 'bind' => [$payload->userId]]);
 		
 				if(is_null($user)){
@@ -62,7 +61,7 @@ class Token{
 				}
 
 			   return true;
-			}catch (Exception $e) {
+			}else{
 				http_response_code(302);
 				$error = array("error"=>"Token Expired");
 				echo json_encode($error);
