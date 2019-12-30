@@ -46,11 +46,14 @@ class Token{
    * @method tokenValidity
    * @return boolean      returns true or false
    */
-  public  static function tokenValidity() {
-	                     $token = self::getBearerToken();
-	                     $payload = JWT::decode($token, SECRET_KEY, ['HS256']);
-			   if($payload){
-                               $db = DB::getInstance();
+  public  static function tokenValidity() {    
+			  try{
+			        $token = self::getBearerToken();
+	                        $payload = JWT::decode($token, SECRET_KEY, ['HS256']);
+				  if($payload == false){
+				     return false;
+				  }
+                                $db = DB::getInstance();
 				$user = $db->findFirst('users',['conditions' => 'id = ?', 'bind' => [$payload->userId]]);
 		
 				if(is_null($user)){
@@ -61,7 +64,7 @@ class Token{
 				}
 
 			   return true;
-			}else{
+			}catch(Exception $e){
 				return false;
 			}
 		}
